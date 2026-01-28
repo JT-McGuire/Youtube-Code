@@ -1,5 +1,25 @@
 import numpy as np
 
+'''
+
+This script computes the actual equivalent input noise level [EIN] of a
+dynamic microphone with given source impedance (grab from mic datasheet).
+
+This assumes all figures are in dBu and A-weighted. If using dBV, you must
+first convert to dBu by adding 2.2 dB to all input values. (dBu = dBV + 2.2)
+The script assumes the datasheet EIN values are measured with a 150 Ohm
+test resistor, and removes that thermal noise contribution before adding
+the thermal noise of the input microphone source impedance. It also assumes
+all noise is purely white and uncorrelated such that A-weighting just reduces
+the noise level by 2 dB.
+
+You'll need numpy to run it. Change the input parameters and observe the
+results. Play around with the functions and enjoy!
+
+Post questions in Youtube comments or email them to jtmcg@alum.mit.edu
+
+'''
+
 # Input data
 degC = 23               # Ambient temp in degrees C
 ein0 = -122             # Measured EIN amp0 in dBuA
