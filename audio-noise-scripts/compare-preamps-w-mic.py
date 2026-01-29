@@ -22,7 +22,7 @@ Post questions in Youtube comments or email them to jtmcg@alum.mit.edu
 
 # Input data
 degC = 23               # Ambient temp in degrees C
-ein0 = -122             # Measured EIN amp0 in dBuA
+ein0 = -120             # Measured EIN amp0 in dBuA
 ein1 = -129             # Measured EIN amp1 in dBuA
 mic_impedance = 350     # Microphone source impedance in Ohm
 
@@ -51,6 +51,9 @@ def combine_white_noise(vn1, vn2):
 #   test resistor thermal noise removed
 def vrms_amp_alone(ein, r_test):
     return np.sqrt(vrmsA(ein)**2 - tnoise(r_test)**2) 
+
+
+#### BEGIN SCRIPT ####
 
 # Remove 150 ohm test resistor thermal noise from datasheet EIN figures
 ein0 = dBuA(vrms_amp_alone(ein0, 150))
