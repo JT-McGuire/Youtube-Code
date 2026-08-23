@@ -1,0 +1,18 @@
+[Unit]
+Description=Snapcast client
+Documentation=man:snapclient(1)
+Wants=avahi-daemon.service
+After=network.target time-sync.target sound.target avahi-daemon.service
+
+[Service]
+EnvironmentFile=-/etc/default/snapclient
+ExecStart=/usr/bin/snapclient --logsink=system $SNAPCLIENT_OPTS 2>/tmp/meta
+User=_snapclient
+Group=_snapclient
+# very noisy on stdout
+StandardOutput=null
+Restart=on-failure
+Nice=-10
+
+[Install]
+WantedBy=multi-user.target
